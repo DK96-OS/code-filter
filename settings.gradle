@@ -11,7 +11,7 @@ pluginManagement {
 	    gradlePluginPortal()
 	}
 }
-rootProject.name = "java-project"
+rootProject.name = "code-filter"
 include(
-	//todo: Add each ":module",
+	":comments",
 )

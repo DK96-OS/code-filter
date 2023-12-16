@@ -1,0 +1,6 @@
+def commonArtifactVersion = "1.0"
+ext {
+    artifactVersions = [
+        comments : commonArtifactVersion,
+    ]
+}
