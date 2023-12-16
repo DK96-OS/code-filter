@@ -73,15 +73,4 @@ open class MultilineComment(
 		else ""
 	}
 
-	/** Get the index that the parser should use after the comment.
-	 * @return The index after the comment, and it's lines are replaced.
-	 */
-	fun getParserIndex(): Int {
-		return if (closesOnNewLine) {
-			closeIndex + 2
-		} else {
-			closeIndex
-		}
-	}
-
 }
