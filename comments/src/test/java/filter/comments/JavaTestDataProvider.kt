@@ -25,8 +25,8 @@ object JavaTestDataProvider {
 	 */
 	fun getLineCommentMethod(): String {
 		return """
-		// A Line Comment
 		public static void main() {
+		// A Line Comment
 		}
 		""".trimIndent()
 	}

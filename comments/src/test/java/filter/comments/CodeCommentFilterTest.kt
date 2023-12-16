@@ -65,10 +65,8 @@ class CodeCommentFilterTest {
 		mInstance = CodeCommentFilter(lineCommentInput1)
 		assertEquals(
 			"""
-			
 			public static void main() {
-			}
-			""".trimIndent(),
+			}""".trimIndent(),
 			mInstance.output
 		)
 		assertTrue(
