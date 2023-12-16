@@ -1,18 +1,8 @@
 package filter.comments
 
-/** Test Data Provider for Java Tests.
+/** Test Data Provider for Java code samples.
  */
 object JavaTestDataProvider {
-
-	/** Returns an empty class.
-	 */
-	fun getEmptyClass(): String {
-		return """
-		public class EmptyClass {
-			
-		}
-		""".trimIndent()
-	}
 
 	/** Returns a simple class with a main method,
 	 * and a package declaration.
@@ -31,6 +21,22 @@ object JavaTestDataProvider {
 		""".trimIndent()
 	}
 
+	/** Returns a string containing a class, and 3 line comments.
+	 */
+	fun getLineCommentClass(): String {
+		return """
+		// A Line Comment
+		class NameOfClass {
+			public static void main(String[] args) {
+				System.out.println("Hello World!"); // Says Hello
+				// Another line comment
+			}
+		}
+		""".trimIndent()
+	}
+
+	/** Test Project File 1 contains 2 multiline comments.
+	 */
 	fun getTestProjectFile1(): String {
 		return """
 			package package1;
@@ -54,6 +60,8 @@ object JavaTestDataProvider {
 		""".trimIndent()
 	}
 
+	/** Test Project File 1 contains 1 multiline comment.
+	 */
 	fun getTestProjectFile2(): String {
 		return """
 			package package1;

@@ -28,18 +28,11 @@ class CodeCommentFilterTest {
 	 */
 	val blockCommentInput2: String = JavaTestDataProvider.getTestProjectFile2()
 
-	/** An Input String with 2 line comments.
-	 * One comment is on a line by itself, and the other
+	/** An Input String with 3 line comments.
+	 * 2 comments are on their own lines, and another
 	 * is on the same line as a statement.
 	 */
-	val lineCommentInput: String = """
-		// A Line Comment
-		class NameOfClass {
-			public static void main(String[] args) {
-				System.out.println("Hello World!"); // Says Hello
-			}
-		}
-	""".trimIndent()
+	val lineCommentInput: String = JavaTestDataProvider.getLineCommentClass()
 
 	@Before
 	fun testSetup() {
