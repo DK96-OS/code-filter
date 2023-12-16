@@ -21,6 +21,16 @@ object JavaTestDataProvider {
 		""".trimIndent()
 	}
 
+	/** Returns a string containing a method, and one line comment.
+	 */
+	fun getLineCommentMethod(): String {
+		return """
+		// A Line Comment
+		public static void main() {
+		}
+		""".trimIndent()
+	}
+
 	/** Returns a string containing a class, and 3 line comments.
 	 */
 	fun getLineCommentClass(): String {
@@ -77,6 +87,17 @@ object JavaTestDataProvider {
 					return (answer * 2f) * (answer * 2f);
 				}
 
+			}
+		""".trimIndent()
+	}
+
+	/** A String containing an unclosed comment.
+	 */
+	fun getUnclosedMultilineComment(): String {
+		return """
+			class UnclosedMultilineTest {
+				/**
+				public void method() {}
 			}
 		""".trimIndent()
 	}

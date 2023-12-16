@@ -30,11 +30,19 @@ class CodeCommentFilterTest {
 	 */
 	val blockCommentInput2: String = JavaTestDataProvider.getTestProjectFile2()
 
+	/** An input containing an unclosed multi-line comment.
+	 */
+	val unclosedComment: String = JavaTestDataProvider.getUnclosedMultilineComment()
+
+	/** An Input String with 1 line comment.
+	 */
+	val lineCommentInput1: String = JavaTestDataProvider.getLineCommentMethod()
+
 	/** An Input String with 3 line comments.
 	 * 2 comments are on their own lines, and another
 	 * is on the same line as a statement.
 	 */
-	val lineCommentInput: String = JavaTestDataProvider.getLineCommentClass()
+	val lineCommentInput2: String = JavaTestDataProvider.getLineCommentClass()
 
 	@Before
 	fun testSetup() {
@@ -53,8 +61,24 @@ class CodeCommentFilterTest {
 	}
 
 	@Test
-	fun testGetOutput_LineComment() {
-		mInstance = CodeCommentFilter(lineCommentInput)
+	fun testGetOutput_LineComment1() {
+		mInstance = CodeCommentFilter(lineCommentInput1)
+		assertEquals(
+			"""
+			
+			public static void main() {
+			}
+			""".trimIndent(),
+			mInstance.output
+		)
+		assertTrue(
+			mInstance.hadComments
+		)
+	}
+
+	@Test
+	fun testGetOutput_LineComment2() {
+		mInstance = CodeCommentFilter(lineCommentInput2)
 		assertEquals(
 			"""
 				class NameOfClass {
@@ -122,6 +146,17 @@ class CodeCommentFilterTest {
 	}
 
 	@Test
+	fun testGetOutput_UnclosedComment_ReturnsInput() {
+		mInstance = CodeCommentFilter(unclosedComment)
+		assertEquals(
+			unclosedComment, mInstance.output
+		)
+		assertFalse(
+			mInstance.hadComments
+		)
+	}
+
+	@Test
 	fun testRemoveLineComments_NoComment_ReturnsNull() {
 		assertNull(
 			mInstance.removeLineComments(
@@ -133,7 +168,7 @@ class CodeCommentFilterTest {
 	@Test
 	fun testRemoveLineComments_LineComment_ReturnsString() {
 		val result = mInstance.removeLineComments(
-			lineCommentInput
+			lineCommentInput2
 		)
 		assertNotNull(result)
 		assertEquals(
@@ -161,7 +196,7 @@ class CodeCommentFilterTest {
 	fun testRemoveMultilineComments_LineComment_ReturnsNull() {
 		assertNull(
 			mInstance.removeMultilineComments(
-				lineCommentInput
+				lineCommentInput2
 			)
 		)
 	}
