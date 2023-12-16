@@ -2,6 +2,7 @@ plugins {
     id "java-library"
     id "jacoco"
     id "kotlin"
+    id "org.jetbrains.dokka"
 }
 
 java {
