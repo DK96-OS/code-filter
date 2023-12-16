@@ -13,5 +13,5 @@ pluginManagement {
 }
 rootProject.name = "java-project"
 include(
-	//todo: Add each ":module",
+	":comments",
 )

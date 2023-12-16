@@ -1,0 +1,54 @@
+plugins {
+    id "java-library"
+    id "jacoco"
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+    withJavadocJar()
+    withSourcesJar()
+}
+
+dependencies {
+    implementation libs.find.bugs
+    testImplementation libs.junit
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = "io.github.dk96-os.bracket-enthusiast"
+            artifactId = "comments"
+            apply from: "../artifacts.gradle"
+            version = artifactVersions.main
+            from components.java
+        }
+    }
+}
+
+tasks.jacocoTestReport {
+    dependsOn tasks.test
+    reports {
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir("jacocoReport")
+    }
+}
+
+tasks.jacocoTestCoverageVerification {
+    dependsOn tasks.test
+    violationRules {
+        failOnViolation = true
+        rule {
+            limit {
+                counter = "INSTRUCTION"
+                minimum = 0.999
+            }
+            limit {
+                counter = "BRANCH"
+                minimum = 0.999
+            }
+        }
+    }
+}
