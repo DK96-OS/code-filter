@@ -27,6 +27,11 @@ class MultilineCommentTest {
 		 */ var a = 1;
 	""".trimIndent()
 
+	val bothSidesInput: String = """
+		var a = 1;/** code on both
+		sides of the comment */var x = Math.pi;
+	""".trimIndent()
+
 	/** Get the pair of indices for the comment.
 	 */
 	fun getPair(input: String): Long {
@@ -46,6 +51,9 @@ class MultilineCommentTest {
 	)
 	val mSuffix = MultilineComment(
 		suffixLineInput, getPair(suffixLineInput)
+	)
+	val mBoth = MultilineComment(
+		bothSidesInput, getPair(bothSidesInput)
 	)
 
 	@Test
@@ -97,6 +105,12 @@ class MultilineCommentTest {
 	}
 
 	@Test
+	fun testNewLineBooleans_Both_() {
+		assertFalse(mBoth.opensOnNewLine)
+		assertFalse(mBoth.closesOnNewLine)
+	}
+
+	@Test
 	fun testGetReplacementText_SingleLine_ReturnsNull() {
 		assertNull(mSingleLine.getReplacementText())
 	}
@@ -117,6 +131,13 @@ class MultilineCommentTest {
 	fun testGetReplacementText_Suffix_ReturnsNewLine() {
 		assertEquals(
 			"\n", mSuffix.getReplacementText()
+		)
+	}
+
+	@Test
+	fun testGetReplacementTest_BothSides_ReturnsEmptyString() {
+		assertEquals(
+			"", mBoth.getReplacementText()
 		)
 	}
 
