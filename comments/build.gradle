@@ -23,7 +23,7 @@ publishing {
             groupId = "io.github.dk96-os.bracket-enthusiast"
             artifactId = "comments"
             apply from: "../artifacts.gradle"
-            version = artifactVersions.main
+            version = artifactVersions.comments
             from components.java
         }
     }
