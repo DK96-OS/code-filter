@@ -1,12 +1,14 @@
 package filter.comments
 
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 
-/** Testing JavaCommentFilter.
+/** Testing CodeCommentFilter.
  */
 class CodeCommentFilterTest {
 
@@ -45,6 +47,9 @@ class CodeCommentFilterTest {
 			noCommentInput,
 			mInstance.output
 		)
+		assertFalse(
+			mInstance.hadComments
+		)
 	}
 
 	@Test
@@ -59,6 +64,9 @@ class CodeCommentFilterTest {
 				}
 			""".trimIndent(),
 			mInstance.output
+		)
+		assertTrue(
+			mInstance.hadComments
 		)
 	}
 
@@ -83,6 +91,9 @@ class CodeCommentFilterTest {
 			""".trimIndent(),
 			mInstance.output
 		)
+		assertTrue(
+			mInstance.hadComments
+		)
 	}
 
 	@Test
@@ -104,6 +115,9 @@ class CodeCommentFilterTest {
 			}
 			""".trimIndent(),
 			mInstance.output
+		)
+		assertTrue(
+			mInstance.hadComments
 		)
 	}
 
